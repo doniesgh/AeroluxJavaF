@@ -79,14 +79,16 @@ public class Reservation {
         this.reservation_date = reservation_date;
     }
     @Override
+
     public String toString(){
         return "Reservation : "
                 + "Id" + id
-                + ",Agence :"+ agency_name
-                +",Nombre de places :" + nb_seat
-                +",Etat :" +status
-                +"Id Vol :" +trip_id
-                +"Prix "+ price;
+                + ", Agence :"+ agency_name
+                + ", Nombre de places :" + nb_seat
+                + ", Etat :" + status
+                + ", Id Vol :" + trip_id
+                + ", Prix " + price
+                + ", Date de réservation " + reservation_date;
     }
 
 

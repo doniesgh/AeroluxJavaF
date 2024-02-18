@@ -31,7 +31,7 @@
                         <Font name="Poppins Regular" size="16.0" />
                     </font>
                 </Label>
-                <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="-10.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="-15.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@resources/search.png" />
                     </image>
@@ -104,14 +104,14 @@
                 </Button>
             </children>
         </VBox>
-        <AnchorPane layoutX="139.0" layoutY="51.0" prefHeight="550.0" prefWidth="882.0" style="-fx-background-color: white; -fx-background-radius: 10;" stylesheets="@Styles/fullpackstyling.css">
+        <AnchorPane layoutX="138.0" layoutY="57.0" prefHeight="550.0" prefWidth="882.0" style="-fx-background-color: white; -fx-background-radius: 10;" stylesheets="@Styles/fullpackstyling.css">
             <children>
                 <Label id="hello" layoutX="377.0" layoutY="7.0" prefHeight="31.0" prefWidth="179.0" text="Gestion Reservation" textFill="#06007b">
                     <font>
                         <Font name="Poppins Regular" size="16.0" />
                     </font>
                 </Label>
-                <TableView id="table" fx:id="reservation_table" layoutX="-2.0" layoutY="44.0" prefHeight="506.0" prefWidth="858.0" style="-fx-border-color: blue; -fx-border-radius: 20px;">
+                <TableView id="table" fx:id="reservation_table" layoutY="38.0" prefHeight="506.0" prefWidth="858.0" style="-fx-border-color: blue; -fx-border-radius: 20px;">
                     <columns>
                         <TableColumn id="id_reservation" fx:id="id_reservation" prefWidth="113.59999084472656" text="Id Reservation" />
                         <TableColumn id="id_trip" fx:id="id_trip" prefWidth="73.5999755859375" text="Id Trip" />
@@ -125,7 +125,7 @@
                 </TableView>
             </children>
         </AnchorPane>
-        <TextField id="search" layoutX="162.0" layoutY="14.0" prefHeight="26.0" prefWidth="445.0" promptText="Search" style="-fx-border-color: white; -fx-border-radius: 20px; -fx-background-color: white;">
+        <TextField id="search" layoutX="166.0" layoutY="11.0" prefHeight="26.0" prefWidth="445.0" promptText="Search" style="-fx-border-color: white; -fx-border-radius: 20px; -fx-background-color: white;">
             <font>
                 <Font name="Poppins Regular" size="14.0" />
             </font>

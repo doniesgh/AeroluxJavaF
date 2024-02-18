@@ -1,6 +1,8 @@
 package com.example.javafxaeroluxproject.controllers;
 import com.example.javafxaeroluxproject.models.Reservation;
 import com.example.javafxaeroluxproject.services.ReservationService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,20 +11,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
+
+import static javafx.scene.input.KeyCode.O;
 
 public class ReservationController {
 
 
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
     @FXML
     private TableView<Reservation> reservation_table;
 
@@ -53,23 +55,25 @@ public class ReservationController {
 
     @FXML
     void initialize() {
+        ReservationService reservationService1 = new ReservationService();
+        try {
+            List<Reservation> reservations = reservationService1.recuperer();
+            ObservableList<Reservation> observableList = FXCollections.observableList(reservations);
+            reservation_table.setItems(observableList);
 
+            // Set cell value factories for each column
+            id_reservation.setCellValueFactory(new PropertyValueFactory<>("id"));
+            agency_name.setCellValueFactory(new PropertyValueFactory<>("agency_name"));
+            id_trip.setCellValueFactory(new PropertyValueFactory<>("trip_id"));
+            nb_seat.setCellValueFactory(new PropertyValueFactory<>("nb_seat"));
+            price.setCellValueFactory(new PropertyValueFactory<>("price"));
+            reservation_date.setCellValueFactory(new PropertyValueFactory<>("reservation_date"));
+            status.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
     }
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-    public void switchToHome(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void switchToReservation(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("landing.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+
+
 }
