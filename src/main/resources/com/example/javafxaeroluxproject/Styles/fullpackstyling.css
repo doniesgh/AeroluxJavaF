@@ -129,3 +129,22 @@
 #hello{
     -fx-font-family:'Poppins';
 }
+
+.accept-button,.view-button {
+    -fx-background-color: #1bb61b;
+    -fx-text-fill: white;
+    -fx-border-radius: 20px;
+    -fx-font-family:'Poppins';
+}
+.table-row-cell,.table-view,.table{
+    -fx-font-family:'Poppins';
+    -fx-text-alignment: center;
+
+}
+.refuse-button ,.delete-button{
+    -fx-background-color: #ff4747;
+    -fx-text-fill: white;
+    -fx-border-radius: 20px;
+    -fx-font-family:'Poppins';
+    margin-left: 20px;
+}

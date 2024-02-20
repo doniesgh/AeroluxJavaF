@@ -8,12 +8,9 @@ import java.util.List;
 
 public class ReservationService implements IService<Reservation> {
     private Connection connection;
-
     public ReservationService() {
         connection = MyDatabase.getInstance().getConnection();
-
     }
-
     public void ajouter(Reservation reservation) throws SQLException {
         String req = "INSERT INTO reservation (agency_name, trip_id, status, nb_seat, price, reservation_date) VALUES ('" +
                 reservation.getAgency_name() + "', '" +
@@ -41,7 +38,6 @@ public class ReservationService implements IService<Reservation> {
         PreparedStatement ps = connection.prepareStatement(req);
         ps.setInt(1,id);
         ps.executeUpdate();
-
     }
     @Override
     public List<Reservation> recuperer() throws SQLException {
@@ -67,20 +63,21 @@ public class ReservationService implements IService<Reservation> {
         // Return the list of reservations
         return reservations;
     }
+    public void updateStatusToRejected(int reservationId) throws SQLException {
+        String req = "UPDATE reservation SET status = 'REJECTED' WHERE id = ?";
+        PreparedStatement ps = connection.prepareStatement(req);
+        ps.setInt(1, reservationId);
+        ps.executeUpdate();
+    }
 
-/*
-    @Override
-    public List<Reservation> recuperer() throws SQLException {
-        List<Reservation> reservations = new ArrayList<>();
-        String req = "SELECT * FROM reservation";
-        Statement st = connection.createStatement();
-        ResultSet rs = st.executeQuery(req);
-        while (rs.next()) {
-            Reservation reservation = new Reservation();
-            reservation.setId(rs.getInt("id"));
-            reservation.setReservation_date(rs.getDate("reservation_date"));
-        }
+    public void updateStatusToAccepted(int id) throws SQLException {
+        String req = "UPDATE reservation SET status = 'ACCEPTED' WHERE id = ?";
+        PreparedStatement ps = connection.prepareStatement(req);
+        ps.setInt(1, id);
+        ps.executeUpdate();
+        ps.close();
+    }
 
-return  reservations;
-    }*/
+
+
 }

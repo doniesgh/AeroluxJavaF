@@ -1,7 +1,9 @@
 package com.example.javafxaeroluxproject;
 
 import com.example.javafxaeroluxproject.models.Reservation;
+import com.example.javafxaeroluxproject.models.Vol;
 import com.example.javafxaeroluxproject.services.ReservationService;
+import com.example.javafxaeroluxproject.services.VolService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,6 +23,30 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
+
+        Vol volToAdd = new Vol();
+        volToAdd.setNumVol("ABC123");
+        volToAdd.setLieuArrivee("Destination");
+        volToAdd.setPiloteId(1);
+        volToAdd.setLieuDepart("Departure");
+        volToAdd.setPlaceDispo(100);
+        volToAdd.setDescription("Sample description");
+        volToAdd.setDateArrive(new Date(124 - 1900, 1 - 1, 18));
+        volToAdd.setDateDepart(new Date(124 - 1900, 1 - 1, 18));
+        try {
+            VolService volService = new VolService();
+
+            volService.ajouter(volToAdd);
+
+            List<Vol> vols = volService.recuperer();
+
+            System.out.println("Retrieved vols:");
+            for (Vol vol : vols) {
+                System.out.println(vol);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error occurred while adding or retrieving data: " + e.getMessage());
+        }
         Reservation reservationToAdd = new Reservation();
         reservationToAdd.setTrip_id(1);
         reservationToAdd.setAgency_name("Example Agency");
@@ -33,10 +59,7 @@ public class Main extends Application {
         try {
             ReservationService rs = new ReservationService();
             rs.ajouter(reservationToAdd);
-            // Retrieve reservations
             List<Reservation> reservations = rs.recuperer();
-
-            // Print retrieved reservations
             System.out.println("Retrieved reservations:");
             for (Reservation reservation : reservations) {
                 System.out.println(reservation);
@@ -50,7 +73,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("reservation.fxml"));
+
+        Parent root = FXMLLoader.load(getClass().getResource("myreservation.fxml"));
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         root.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
@@ -65,4 +89,5 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
 }

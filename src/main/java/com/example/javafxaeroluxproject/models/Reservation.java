@@ -1,5 +1,7 @@
 package com.example.javafxaeroluxproject.models;
 
+import javafx.scene.control.Button;
+
 import java.util.Date;
 
 public class Reservation {
@@ -10,6 +12,25 @@ public class Reservation {
     private int nb_seat;
     private float price;
     private Date reservation_date;
+    private Button accept;
+    private Button refuse ;
+
+    public Button getAccept() {
+        return accept;
+    }
+
+    public void setAccept(Button accept) {
+        this.accept = accept;
+    }
+
+    public Button getRefuse() {
+        return refuse;
+    }
+
+    public void setRefuse(Button refuse) {
+        this.refuse = refuse;
+    }
+
     public Reservation() {
 
     }
@@ -21,6 +42,7 @@ public class Reservation {
         this.nb_seat = nb_seat;
         this.price = price;
         this.reservation_date= reservation_date;
+
     }
 
     public float getPrice() {
@@ -89,6 +111,7 @@ public class Reservation {
                 + ", Id Vol :" + trip_id
                 + ", Prix " + price
                 + ", Date de réservation " + reservation_date;
+
     }
 
 
